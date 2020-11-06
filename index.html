@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="custom.css">
+    <title>Mel Lamagna</title>
+</head>
+<body>
+
+    <div class="container-fluid" id="headernavbar">
+        <header>
+            <h1>Mel Lamagna</h1>
+            <p>I Can Write Code Sometimes&trade;</p>
+        </header>
+
+        <ul class="nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link disabled">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="bio.html" class="nav-link">Bio</a>
+            </li>
+            <li class="nav-item">
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        <center><img src="header1.png" class="img-fluid" id="header-cycle"></center>
+    </div>
+    <div class="container">
+        <main>
+            <div class="jumbotron">
+                <h2>Hello, <span id="visitor">all</span>!</h2>
+                <p class="lead">I have text over my face and could probably have picked a better image for this.</p>
+                <hr class="my-4">
+                <p>Recent JUMP graduate pursuing a Java Development career, looking to combine nearly 18 months of industry equivalence experience with a strong digital mindset to become a valued asset to your organization. Rutgers University Computer Science Alumni. </p>
+                <a class="btn btn-dark btn-lg" href="#" id="loginbutton" role="button" onclick="handleLogin(event)">Login</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script text="text/javascript">
+        var json_external;
+		const fetchCall = url => {
+			fetch(url)
+				  .then(response => response.json())
+				  .then(json => document.getElementById("visitor").innerText = json[0].name)
+		}
+        
+        function handleLogin(){
+            event.preventDefault();
+            fetchCall("https://jsonplaceholder.typicode.com/users");
+        }
+
+        function* newImage(){
+            var img = new Array;
+            let i = 0;
+            img[0] = "header1.png";
+            img[1] = "header2.png";
+            img[2] = "header3.png";
+            while(true) {
+                i++;
+                console.log(img[i % 3]);
+                yield img[i % 3];
+            }
+        }
+
+        let con = newImage();
+        function changeBanner(){
+            document.getElementById("header-cycle").src = con.next().value;
+        }
+
+        window.onload = function() {
+            setInterval(changeBanner, 3000);
+        }
+    </script>
+</body>
+</html>

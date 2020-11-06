@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="custom.css">
+    <title>Portfolio | Mel Lamagna</title>
+    <style type="text/css">
+        button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        #desc-container {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid" id="headernavbar">
+        <header>
+            <h1>Mel Lamagna</h1>
+            <p>I Can Write Code Sometimes&trade;</p>
+        </header>
+
+        <ul class="nav">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="bio.html" class="nav-link">Bio</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link disabled">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container" id="projects">
+        <main>
+            
+            <h2>Projects</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <b>Title</b>
+                    </div>
+                    <div class="col-6">
+                        <b>Description</b>
+                    </div>
+                    <div class="col">
+                        <b>Actions</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Library CRUD Project
+                    </div>
+                    <div class="col-6">
+                        Online book catalog for library patron rentals and librarian management
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" id="LibraryDesc">Description</button>
+                        <button type="button" class="btn btn-dark"
+                            onclick="window.location.href='https://github.com/ScrumSquad2/JUMPLibrary'">GitHub</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Data Entry Script
+                    </div>
+                    <div class="col-6">
+                        Script for improved productivity of data entry operators
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" id="DataDesc">Description</button>
+                        <button type="button" class="btn btn-dark"
+                            onclick="alert('(This project contained IP belonging to my previous employer and I can\'t actually put it anywhere. Sorry!)')">GitHub</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Project description</h2>
+            <div class="container" id="desc-container">
+                <p>Please click "description" button by a project for further information.</p>
+            </div>
+
+            <div hidden id="libdesctext">
+                <p>During my time in the JUMP program, I and a team of four others had constructed an online book catalog for library patron rentals and librarian management.</p>
+                <ul>
+                <li>Employed the DAO design pattern as well as JDBC for interfacing with Data Persistence</li>
+                <li>Employed the DAO design pattern as well as JDBC for interfacing with Data Persistence</li>
+                <li>Developed Front End using Servlet / JSP architecture and Bootstrap CSS library</li>
+                <li>Presented Full Stack Application development after regular SCRUM Sprints, as well as created USER Stories for Sprint Planning</li>
+                </ul>
+            </div>
+
+            <div hidden id="datadesctext">
+                <p>For my previous employer, I'd written an extensive script from scratch designed to streamline the data entry process for employees in said department, designed to conserve keystrokes by reusing data keyed into previous redundant fields in the current form.</p>
+                <ul>
+                <li>Written in a proprietary scripting language bundled into a Telnet terminal emulator (PowerTerm by Ericom Software). Limited documentation of said language (PowerTerm PSL) exists online, leading to a challenging but nonetheless successful debugging experience</li>
+                <li>Bound to a single hotkey for the end user's intuitive use, dynamically detecting which input page it was on via screen capturing methods and changing its functionality based on window header text and terminal cursor position</li>
+                <li>Deployed to 20+ data entry operators, improving productivity quota for the entire department</li>
+                </ul>
+            </div>
+
+            
+        </main>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+        var x = document.getElementById("projects").querySelectorAll("div.row");
+        console.log(x.length);
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.border = "1px solid #000000";
+        }
+
+        var libdescbtn = document.getElementById("LibraryDesc");
+        var datadescbtn = document.getElementById("DataDesc");
+
+        libdescbtn.addEventListener("click", handleClick);
+        datadescbtn.addEventListener("click", handleClick);
+
+        function handleClick(event) {
+            event.preventDefault();
+
+            var display = document.getElementById("desc-container");
+            if (event.target.id === "LibraryDesc"){
+                display.innerHTML = document.getElementById("libdesctext").innerHTML;
+            } else if (event.target.id === "DataDesc"){
+                display.innerHTML = document.getElementById("datadesctext").innerHTML;
+            }
+        }
+
+    </script>
+
+</body>
+</html>
